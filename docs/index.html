@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<title>Frikandelbroodje Klikker</title>
 		<link rel="icon" href="media/frikandelbroodje.png">
 		<link rel="stylesheet" href="style.css">
+		<meta charset="utf-8">
 		<meta name="keywords" content="ah,appie,frinkandelbroodje,klikker,spel,game">
-		<meta name="description" content="Assignment for the egg drop experiment I had to do.">
+		<meta name="description" content="Frikandelbroodje klikker spel">
 		<meta name="author" content="Julian Gerritsen, Alex Wielinga, Lennart van Oudekerken">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	</head>
   
   <body>
-    <canvas id="glCanvas" width="640" height="480"></canvas>
+		<center>
+			<img src="media/Frikandelbroodje.png" alt="Frikandelbroodje" onclick="add()">
+			<br>
+			<input type="text" id="counter" value=0>
+			<br>
+			<button onclick="storage.save()">Save</button>
+			<button onclick="storage.load()">Load</button>
+			<button onclick="storage.reset()">Reset</button>
+		</center>
   </body>
 
   <script src="script.js"></script>
