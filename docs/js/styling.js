@@ -5,12 +5,13 @@ window.addEventListener('resize', sizeChange);
 sizeChange();
 
 
-function sizeChange(){
+function sizeChange()
+{
     var aspectRatio = window.innerWidth / window.innerHeight;
-    if(aspectRatio > 1){
+    if (aspectRatio > 1) {
         style.href = "css/landscape.css";
         
-    }else{
+    } else {
         style.href = "css/portrait.css";
     }
 }

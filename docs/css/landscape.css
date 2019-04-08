@@ -21,3 +21,18 @@ body, html {
     height: 100vh;
     background-color: green;
 }
+
+
+
+#shop ul {
+    margin: 10%;
+    list-style-type: none;
+}
+
+#shop ul li {
+    position: relative;
+}
+
+#shop ul li img {
+    width: 10%;
+}

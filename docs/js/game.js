@@ -1,0 +1,149 @@
+/*
+  TODO LIST:
+    - Make actual upgrades
+    - Make upgrades cost more after purchase
+    - Animate when clicked in add()
+*/
+
+gameloop();
+
+// Global variables here.
+var count = 0;
+var incr = 1;
+var dps = 0;
+
+// MAIN GAME LOOP
+async function gameloop() {
+  while (1) { // While (true) is for hipsters
+    count += dps;
+    await sleep(1000); // Sleep() is somewhere at the bottom of this file. Same sleep as in other languages.
+    refresh();
+  }
+}
+
+function add()
+{
+  count += incr;
+  refresh();
+}
+
+function refresh()
+{
+  document.getElementById("counter").value = count;
+  // Element.value = variable
+  // Add each element containing a variable here.
+}
+
+function buy(item) {
+  switch (item) {
+
+    case "bonus_kaart":
+      upgrades.clickermultiplier(200, 2);
+      break;
+
+    default:
+      alert("dit item bestaat niet");
+      break;
+  }
+}
+
+
+var upgrades = {
+
+  // amount per click getting multiplied.
+  clickermultiplier: function(price, multiplier) 
+  {
+    if (count >= price) {
+      incr = incr * multiplier; // =* is not valid for some reason.
+      count -= price;
+    } else {
+      alert("Heb jij geld, kankerboef?");
+    }
+  },
+
+  // more per second
+  dpsaddition: function(price, addition)
+  {
+    if (count >= price) {
+      dps += addition;
+      count -= price;
+    } else {
+      alert("Heb jij geld, kankerboef?");
+    }
+  }
+
+}
+
+
+var storage = {
+
+  save: function()
+  {
+    cookies.set("frikandelbroodjes", count.toString());
+    cookies.set("clickerincr", incr.toString());
+    cookies.set("dps", incr.toString());
+  },
+
+  load: function()
+  {
+    /* Spaghetti code translation: if the cookie is NaN..... Meaning there's no cookie.
+    Checking all the cookies is redundant so I chose 1. */
+    if (isNaN(parseInt(cookies.get("frikandelbroodjes")))) { 
+      alert("Nothing to load...");
+    } else {
+      count = parseInt(cookies.get("frikandelbroodjes"));
+      incr = parseInt(cookies.get("clickerincr"));
+      dps = parseInt(cookies.get("dps"));
+      refresh();
+    }   
+  },
+
+  reset: function()
+  {
+    // Delete cookies or not??? tbd...
+    count = 0;
+    incr = 1;
+    dps = 0;
+    refresh();
+  }
+
+}
+
+
+// Lovely functions from stackoverflow, making cookies less of a pain.
+var cookies = {
+
+  get: function(name)
+  {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  },
+
+  set: function(name, value, days)
+  {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  },
+
+  delete: function(name)
+  {
+    document.cookie = name+'=; Max-Age=-99999999;';
+  }
+
+}
+
+// Sleep function used for the game loop.
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
