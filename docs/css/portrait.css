@@ -1,0 +1,21 @@
+body, html {
+    font-family: sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+#main {
+    display: block;
+    margin: 0;
+    width: 100vw;
+    height: 50vh;
+    background-color: blue;
+}
+
+#shop {
+    display: block;
+    margin: 0;
+    width: 100vw;
+    height: 50vh;
+    background-color: green;
+}

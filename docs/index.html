@@ -3,15 +3,17 @@
 	<head>
 		<title>Frikandelbroodje Klikker</title>
 		<link rel="icon" href="media/Frikandelbroodje.png">
-		<link rel="stylesheet" href="style.css">
 		<meta charset="utf-8">
 		<meta name="keywords" content="ah,appie,frinkandelbroodje,klikker,spel,game">
 		<meta name="description" content="Frikandelbroodje klikker spel">
 		<meta name="author" content="Julian Gerritsen, Alex Wielinga, Lennart van Oudekerken">
-	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link id="styleLink" href="" rel="stylesheet">
 	</head>
   
   <body>
+
+	<div id="main">
 		<center>
 			<img src="media/Frikandelbroodje.png" alt="Frikandelbroodje" onclick="add()">
 			<br>
@@ -21,7 +23,14 @@
 			<button onclick="storage.load()">Load</button>
 			<button onclick="storage.reset()">Reset</button>
 		</center>
+	</div>
+
+	<div id="shop">
+		  <p>hier komt de shop dan he</p>
+	</div>
+
   </body>
 
-  <script src="script.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/styling.js"></script>
 </html>

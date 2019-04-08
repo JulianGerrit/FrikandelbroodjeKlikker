@@ -1,0 +1,23 @@
+body, html {
+    font-family: sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+#main {
+    display: block;
+    margin: 0;
+    float: left;
+    width: 50vw;
+    height: 100vh;
+    background-color: blue;
+}
+
+#shop {
+    display: block;
+    margin: 0;
+    float: right;
+    width: 50vw;
+    height: 100vh;
+    background-color: green;
+}
