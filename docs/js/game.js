@@ -1,7 +1,6 @@
 /*
   TODO LIST:
-    - Make actual upgrades
-    - Make upgrades cost more after purchase
+    - SHOW NEW PRICE AFTER UPGRADE
     - Animate when clicked in add()
 */
 
@@ -13,7 +12,8 @@ var incr = 1;
 var dps = 0;
 
 // MAIN GAME LOOP
-async function gameloop() {
+async function gameloop() 
+{
   while (1) { // While (true) is for hipsters
     count += dps;
     await sleep(1000); // Sleep() is somewhere at the bottom of this file. Same sleep as in other languages.
@@ -35,10 +35,26 @@ function refresh()
 }
 
 function buy(item) {
+  // Prices below
+  pBonuskaart = 100;
+  pFiets = 300;
+  pHarry = 1000;
+
   switch (item) {
 
     case "bonus_kaart":
-      upgrades.clickermultiplier(200, 2);
+      upgrades.clickermultiplier(pBonuskaart, 2);
+      pBonuskaart = pBonuskaart * 2;
+      break;
+
+    case "fiets":
+      upgrades.dpsaddition(pFiets, 20); // Proof of concept
+      pFiets = pFiets * 2;
+      break;
+
+    case "harry":
+      upgrades.dpsaddition(pHarry, 500); // Proof of concept
+      pHarry = pHarry * 2;
       break;
 
     default:
