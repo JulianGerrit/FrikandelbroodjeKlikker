@@ -1,6 +1,8 @@
 /*
   TODO LIST:
-    - SHOW NEW PRICE AFTER UPGRADE
+    - Styling
+    - Link to images in media/
+    - More upgrades
     - Animate when clicked in add()
 */
 
@@ -45,16 +47,19 @@ function buy(item) {
     case "bonus_kaart":
       upgrades.clickermultiplier(pBonuskaart, 2);
       pBonuskaart = pBonuskaart * 2;
+      document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
       break;
 
     case "fiets":
       upgrades.dpsaddition(pFiets, 20); // Proof of concept
       pFiets = pFiets * 2;
+      document.querySelector("#fiets code").innerHTML = pFiets;
       break;
 
     case "harry":
       upgrades.dpsaddition(pHarry, 500); // Proof of concept
       pHarry = pHarry * 2;
+      document.querySelector("#harry code").innerHTML = pHarry;
       break;
 
     default:

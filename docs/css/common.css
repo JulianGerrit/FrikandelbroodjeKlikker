@@ -1,0 +1,16 @@
+#shop ul {
+    margin: 10%;
+    list-style-type: none;
+}
+
+#shop ul li {
+    position: relative;
+}
+
+#shop ul li img {
+    width: 10%;
+}
+
+#shop ul li code {
+    font-size: 200%;
+}
