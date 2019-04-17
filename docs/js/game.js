@@ -86,19 +86,23 @@ var refreshes = {
   refreshUpgrades: function()
   { 
     for (i = 0; i < Bonuskaarten; i++) {
+      pBonuskaart = 100;
       pBonuskaart = pBonuskaart * 2;
-      document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
     }
 
     for (i = 0; i < Fietsen; i++) {
+      pFiets = 300;
       pFiets = pFiets * 2;
-      document.querySelector("#fiets code").innerHTML = pFiets;
     }
 
     for (i = 0; i < Harrys; i++) {
+      pHarry = 1000;
       pHarry = pHarry * 2;
-      document.querySelector("#harry code").innerHTML = pHarry;
     }
+
+    document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
+    document.querySelector("#fiets code").innerHTML = pFiets;
+    document.querySelector("#harry code").innerHTML = pHarry;
 
   }
 }
@@ -173,7 +177,15 @@ var storage = {
     count = 0;
     incr = 1;
     dps = 0;
+    pBonuskaart = 100;
+    pFiets = 300;
+    pHarry = 1000;
+    Bonuskaarten = 0;
+    Fietsen = 0;
+    Harrys = 0;
+
     refreshes.refreshElements();
+    refreshes.refreshUpgrades();
   }
 
 }
