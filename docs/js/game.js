@@ -84,20 +84,21 @@ var refreshes = {
   },
 
   refreshUpgrades: function()
-  { 
+  {
+    pBonuskaart = 100;
+    pFiets = 300;
+    pHarry = 1000;
+
     for (i = 0; i < Bonuskaarten; i++) {
-      pBonuskaart = 100;
-      pBonuskaart = pBonuskaart * 2;
+      pBonuskaart = Math.round(pBonuskaart * 2.3);
     }
 
     for (i = 0; i < Fietsen; i++) {
-      pFiets = 300;
-      pFiets = pFiets * 2;
+      pFiets = Math.round(pFiets * 2.35);
     }
 
     for (i = 0; i < Harrys; i++) {
-      pHarry = 1000;
-      pHarry = pHarry * 2;
+      pHarry = Math.round(pHarry * 2.25);
     }
 
     document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
