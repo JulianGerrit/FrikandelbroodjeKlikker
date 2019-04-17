@@ -1,4 +1,9 @@
 /*
+  Source code is also available at https://github.com/JulianGerrit/FrikandelbroodjeKlikker
+  This project is licensed under the GNU General Public License v3.0 - see the https://github.com/JulianGerrit/FrikandelbroodjeKlikker/blob/master/LICENSE file for details.
+*/
+
+/*
   TODO LIST:
     - Styling
     - Link to images in media/
