@@ -22,27 +22,26 @@ pBonuskaart = 100;
 pFiets = 300;
 pHarry = 1000;
 
+// Upgrade counters
+Bonuskaarten = 0;
+Fietsen = 0;
+Harrys = 0;
+
+
 // MAIN GAME LOOP
 async function gameloop() 
 {
   while (1) { // While (true) is for hipsters
     count += dps;
     await sleep(1000); // Sleep() is somewhere at the bottom of this file. Same sleep as in other languages.
-    refresh();
+    refreshes.refreshElements();
   }
 }
 
 function add()
 {
   count += incr;
-  refresh();
-}
-
-function refresh()
-{
-  document.getElementById("counter").value = count;
-  // Element.value = variable
-  // Add each element containing a variable here.
+  refreshes.refreshElements();
 }
 
 function buy(item) {
@@ -50,23 +49,23 @@ function buy(item) {
   switch (item) {
 
     case "bonus_kaart":
-       if (upgrades.clickermultiplier(pBonuskaart, 2)) {
-      pBonuskaart = pBonuskaart * 2;
-      document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
-       }
+      if (upgrades.clickermultiplier(pBonuskaart, 2)) {
+        Bonuskaarten++;
+        refreshes.refreshUpgrades();
+      }
       break;
 
     case "fiets":
       if (upgrades.dpsaddition(pFiets, 20)) { // Proof of concept
-      pFiets = pFiets * 2;
-      document.querySelector("#fiets code").innerHTML = pFiets;
+        Fietsen++;
+        refreshes.refreshUpgrades();
       }
       break;
 
     case "harry":
       if (upgrades.dpsaddition(pHarry, 500)) { // Proof of concept
-      pHarry = pHarry * 2;
-      document.querySelector("#harry code").innerHTML = pHarry;
+        Harrys++;
+        refreshes.refreshUpgrades();
       }
       break;
 
@@ -76,6 +75,33 @@ function buy(item) {
   }
 }
 
+var refreshes = {
+  refreshElements: function()
+  {
+    document.getElementById("counter").value = count;
+    // Element.value = variable
+    // Add each element containing a variable here.
+  },
+
+  refreshUpgrades: function()
+  { 
+    for (i = 0; i < Bonuskaarten; i++) {
+      pBonuskaart = pBonuskaart * 2;
+      document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
+    }
+
+    for (i = 0; i < Fietsen; i++) {
+      pFiets = pFiets * 2;
+      document.querySelector("#fiets code").innerHTML = pFiets;
+    }
+
+    for (i = 0; i < Harrys; i++) {
+      pHarry = pHarry * 2;
+      document.querySelector("#harry code").innerHTML = pHarry;
+    }
+
+  }
+}
 
 var upgrades = {
 
@@ -114,7 +140,11 @@ var storage = {
   {
     cookies.set("frikandelbroodjes", count.toString());
     cookies.set("clickerincr", incr.toString());
-    cookies.set("dps", incr.toString());
+    cookies.set("dps", dps.toString());
+
+    cookies.set("bonuskaarten", Bonuskaarten.toString());
+    cookies.set("fietsen", Fietsen.toString());
+    cookies.set("harrys", Harrys.toString());
   },
 
   load: function()
@@ -127,7 +157,13 @@ var storage = {
       count = parseInt(cookies.get("frikandelbroodjes"));
       incr = parseInt(cookies.get("clickerincr"));
       dps = parseInt(cookies.get("dps"));
-      refresh();
+
+      Bonuskaarten = parseInt(cookies.get("bonuskaarten"));
+      Fietsen = parseInt(cookies.get("fietsen"));
+      Harrys = parseInt(cookies.get("harrys"));
+
+      refreshes.refreshUpgrades();
+      refreshes.refreshElements();
     }   
   },
 
@@ -137,7 +173,7 @@ var storage = {
     count = 0;
     incr = 1;
     dps = 0;
-    refresh();
+    refreshes.refreshElements();
   }
 
 }
