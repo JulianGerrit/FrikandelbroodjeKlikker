@@ -12,6 +12,10 @@ gameloop();
 var count = 0;
 var incr = 1;
 var dps = 0;
+// Prices below
+pBonuskaart = 100;
+pFiets = 300;
+pHarry = 1000;
 
 // MAIN GAME LOOP
 async function gameloop() 
@@ -37,29 +41,28 @@ function refresh()
 }
 
 function buy(item) {
-  // Prices below
-  pBonuskaart = 100;
-  pFiets = 300;
-  pHarry = 1000;
 
   switch (item) {
 
     case "bonus_kaart":
-      upgrades.clickermultiplier(pBonuskaart, 2);
+       if (upgrades.clickermultiplier(pBonuskaart, 2)) {
       pBonuskaart = pBonuskaart * 2;
       document.querySelector("#bonus_kaart code").innerHTML = pBonuskaart;
+       }
       break;
 
     case "fiets":
-      upgrades.dpsaddition(pFiets, 20); // Proof of concept
+      if (upgrades.dpsaddition(pFiets, 20)) { // Proof of concept
       pFiets = pFiets * 2;
       document.querySelector("#fiets code").innerHTML = pFiets;
+      }
       break;
 
     case "harry":
-      upgrades.dpsaddition(pHarry, 500); // Proof of concept
+      if (upgrades.dpsaddition(pHarry, 500)) { // Proof of concept
       pHarry = pHarry * 2;
       document.querySelector("#harry code").innerHTML = pHarry;
+      }
       break;
 
     default:
@@ -77,8 +80,10 @@ var upgrades = {
     if (count >= price) {
       incr = incr * multiplier; // =* is not valid for some reason.
       count -= price;
+      return true;
     } else {
       alert("Heb jij geld, kankerboef?");
+      return false;
     }
   },
 
@@ -88,8 +93,10 @@ var upgrades = {
     if (count >= price) {
       dps += addition;
       count -= price;
+      return true;
     } else {
       alert("Heb jij geld, kankerboef?");
+      return false;
     }
   }
 
